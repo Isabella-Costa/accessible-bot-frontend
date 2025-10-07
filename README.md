@@ -25,13 +25,20 @@ e profissionais da educação que interagem com pessoas com Transtorno do Espect
 📦 1. Clonar o repositório
 `      `
 `      `
+
+
 📦 2. Instalar as dependências
 `npm install`
+
+
 
 ⚙️ 3. Configurar variáveis de ambiente
 
 
+
+
 🗄️ 4. Configurar o Banco de Dados
+
 Você pode rodar o banco de dados PostgreSQL de duas formas:
 -  Execute o comando:
 `docker-compose up -d`
@@ -42,6 +49,8 @@ Pra entrar no terminal do contêiner:
 
 Para entrar no prompt do PostgreSQL:
 `psql -U -d <nome_do_banco> (DE ACORDO COM O .ENV)`
+
+
 
 🚀 5. Iniciar o projeto
 `npm start`

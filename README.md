@@ -1,17 +1,17 @@
-## FRONT-END AutBot — Chatbot Inclusivo (MOBILE)
+# FRONT-END AutBot — Chatbot Inclusivo (MOBILE)
 AutBot é uma ferramenta web/mobile com um chatbot acessível e empático, desenvolvido para apoiar pais, cuidadores, professores 
 e profissionais da educação que interagem com pessoas com Transtorno do Espectro Autista (TEA).
 
-# Objetivos
+## Objetivos
 - Oferecer suporte informativo sobre rotinas, direitos e inclusão de pessoas com TEA.
 - Reduzir barreiras digitais com uma interface clara e inclusiva.
 
 
-# Funcionalidades Principais
+## Funcionalidades Principais
 
 
 
-# Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 
 
@@ -21,7 +21,7 @@ e profissionais da educação que interagem com pessoas com Transtorno do Espect
 
 
 
-# Como Executar o Projeto (localmente)
+## Como Executar o Projeto (localmente)
 📦 1. Clonar o repositório
 `      `
 `      `

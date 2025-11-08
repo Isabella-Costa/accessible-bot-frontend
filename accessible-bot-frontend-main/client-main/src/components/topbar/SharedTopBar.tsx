@@ -3,7 +3,7 @@ import './SharedTopBar.css';
 import { FaUserCircle, FaArrowLeft } from 'react-icons/fa'; 
 
 interface SharedTopBarProps {
-  pageType: 'login' | 'register' | 'chat' | 'tutorial' | 'profile' | 'info';
+  pageType: 'login' | 'register' | 'chat' | 'tutorial' | 'profile' | 'info' | 'agenda';
   onShowChatView?: () => void;    
   onShowHistoryView?: () => void; 
   isHistoryViewActive?: boolean;  
@@ -12,7 +12,11 @@ interface SharedTopBarProps {
 const SharedTopBar = ({ pageType, onShowChatView, onShowHistoryView, isHistoryViewActive }: SharedTopBarProps) => {
   const navigate = useNavigate();
 
-  const showBackButton = pageType === 'tutorial' || pageType === 'profile' || pageType === 'info';
+  const showBackButton =
+    pageType === 'tutorial' ||
+    pageType === 'profile' ||
+    pageType === 'info' ||
+    pageType === 'agenda'; // agora mostra o botão voltar também na agenda, se quiser
 
   const handleAutBotClick = () => {
     if (pageType === 'chat' && onShowChatView) {
@@ -26,12 +30,11 @@ const SharedTopBar = ({ pageType, onShowChatView, onShowHistoryView, isHistoryVi
     <header className="shared-top-bar">
       <div className="shared-top-bar-left">
         <div className="shared-top-bar-return">
-
-        {showBackButton && (
-          <button title="Voltar" className="shared-nav-button icon-button" onClick={() => navigate(-1)}>
-            <FaArrowLeft size={20} />
-          </button>
-        )}
+          {showBackButton && (
+            <button title="Voltar" className="shared-nav-button icon-button" onClick={() => navigate(-1)}>
+              <FaArrowLeft size={20} />
+            </button>
+          )}
         </div>
         <img src="/AutBot_Logo.png" alt="AutBot Logo" className="shared-logo" />
         <button className="shared-app-name-button" onClick={handleAutBotClick}>
@@ -40,56 +43,32 @@ const SharedTopBar = ({ pageType, onShowChatView, onShowHistoryView, isHistoryVi
       </div>
 
       <nav className="shared-top-bar-right">
-        {pageType === 'chat' && (
+        {(pageType === 'chat' || pageType === 'agenda') && (
           <>
             <button className="shared-nav-button" onClick={() => navigate('/')}>
               Sair
             </button>
-
-            {isHistoryViewActive ? (
-              <button title="Voltar ao Chat" className="shared-nav-button icon-button" onClick={onShowChatView}>
-                <FaArrowLeft size={20} />
-              </button>
-            ) : (
-              <button className="shared-nav-button" onClick={onShowHistoryView}>
-                Histórico
-              </button>
-            )}
+            <button className="shared-nav-button" onClick={() => navigate('/tutorial')}>
+              Tutorial
+            </button>
+            <button className="shared-nav-button" onClick={() => navigate('/agenda')}>
+              Agenda
+            </button>
+            <button title="Perfil" className="shared-nav-button icon-button" onClick={() => navigate('/perfil')}>
+              <FaUserCircle size={20} />
+            </button>
           </>
         )}
 
-        {(pageType === 'login' || pageType === 'register' || (pageType === 'chat' && !isHistoryViewActive)) && (
-          <button className="shared-nav-button" onClick={() => navigate('/tutorial')}>
-            Tutorial
-          </button>
-        )}
-
-        {pageType === 'login' && (
+        {(pageType === 'login' || pageType === 'register') && (
           <>
-            <button className="shared-nav-button" onClick={() => navigate('/cadastro')}>
-              Cadastre-se
+            <button className="shared-nav-button" onClick={() => navigate(pageType === 'login' ? '/cadastro' : '/')}>
+              {pageType === 'login' ? 'Cadastre-se' : 'Login'}
             </button>
             <button className="shared-nav-button" onClick={() => navigate('/sobre')}>
               Info
             </button>
           </>
-        )}
-
-        {pageType === 'register' && (
-          <>
-            <button className="shared-nav-button" onClick={() => navigate('/')}>
-              Login
-            </button>
-            <button className="shared-nav-button" onClick={() => navigate('/sobre')}>
-              Info
-            </button>
-          </>
-        )}
-
-        {pageType === 'chat' && (
-          <button title="Perfil" className="shared-nav-button icon-button" onClick={() => navigate('/perfil')}>
-            <FaUserCircle size={20} />
-          </button>
         )}
       </nav>
     </header>
